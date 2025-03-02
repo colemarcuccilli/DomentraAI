@@ -43,7 +43,7 @@ const CelestialPropertyDetails: React.FC<CelestialPropertyDetailsProps> = ({ pro
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'location' | 'financials'>('overview');
   const [isLoading, setIsLoading] = useState(true);
-  const [similarProperties, setSimilarProperties] = useState<Property[]>([]);
+  const [, setSimilarProperties] = useState<Property[]>([]);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   
   // Simulate loading data

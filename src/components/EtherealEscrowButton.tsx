@@ -16,7 +16,6 @@ interface EtherealEscrowButtonProps {
  * comprehensive modal interface for escrow initiation.
  */
 const EtherealEscrowButton: React.FC<EtherealEscrowButtonProps> = ({
-  propertyId,
   propertyPrice,
   variant = 'primary',
   size = 'md',

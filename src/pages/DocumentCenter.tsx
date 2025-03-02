@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import DocumentSidebar from '../components/DocumentSidebar';
 import DocumentList from '../components/DocumentList';
 import DocumentDetail from '../components/DocumentDetail';
-import { Document, User } from '../types/documentTypes';
+import { Document } from '../types/documentTypes';
 import DocumentUploadModal from '../components/DocumentUploadModal';
 import DocumentShareModal from '../components/DocumentShareModal';
 
