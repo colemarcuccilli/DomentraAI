@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic styles */
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* Simple utility classes */
+
+
+/* Responsive container for mobile-first design */
+
+.container-fluid {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+@media (min-width: 640px) {
+    .container-fluid {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-fluid {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container-fluid {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 1536px) {
+    .container-fluid {
+        max-width: 1920px;
+    }
+}
+
+
+/* Fix for App.css root max-width constraint */
+
+#root {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
