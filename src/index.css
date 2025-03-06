@@ -63,3 +63,20 @@ body {
     margin: 0 !important;
     text-align: left !important;
 }
+
+
+/* Custom animations */
+
+@keyframes pulse-subtle {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+    }
+}
+
+.animate-pulse-subtle {
+    animation: pulse-subtle 3s infinite;
+}

@@ -8,7 +8,15 @@ import EtherealEscrowButton from './EtherealEscrowButton';
 interface Property {
   id: string;
   title: string;
-  address: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  city: string;
+  state: string;
+  zipCode: string;
   price: number;
   imageUrls: string[];
   bedrooms: number;
@@ -205,7 +213,9 @@ const CelestialPropertyDetails: React.FC<CelestialPropertyDetailsProps> = ({ pro
                   {property.title}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300 mb-2">
-                  {property.address}
+                  {typeof property.address === 'object' 
+                    ? `${property.address.street}, ${property.address.city}, ${property.address.state}` 
+                    : `${property.city}, ${property.state}`}
                 </p>
                 <div className="flex items-center">
                   <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">

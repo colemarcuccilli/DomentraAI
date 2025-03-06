@@ -1,141 +1,209 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 /**
- * SideNavigation - An elegant, mobile-first sidebar navigation
- * for platform features. Provides intuitive access to core app
- * functionality with beautiful visual indicators for the active section.
+ * SideNavigation - A breathtaking, mobile-first component
+ * for the main application navigation with elegant hover effects.
  */
 const SideNavigation: React.FC = () => {
   const location = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  // Platform features navigation items
-  const navigationItems = [
-    { 
-      id: 'matchmaking', 
-      name: 'Matchmaking', 
+  
+  // Navigation items
+  const navItems = [
+    {
+      name: 'Matchmaking',
       path: '/matchmaking',
       icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
         </svg>
       )
     },
-    { 
-      id: 'loan-management', 
-      name: 'Loan Management', 
-      path: '/loan-management',
+    {
+      name: 'My Funding',
+      path: '/funding',
       icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
+      ),
+      subItems: [
+        {
+          name: 'My Requests',
+          path: '/my-requests',
+          highlight: false
+        },
+        {
+          name: 'Funded Deals',
+          path: '/funding/deals',
+          highlight: false
+        }
+      ]
+    },
+    {
+      name: 'Negotiations',
+      path: '/negotiations',
+      icon: (
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
       )
     },
-    { 
-      id: 'document-center', 
-      name: 'Document Center', 
+    {
+      name: 'Document Center',
       path: '/document-center',
       icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
       )
     },
-    { 
-      id: 'integrations', 
-      name: 'Integrations', 
-      path: '/integrations',
+    {
+      name: 'Profile',
+      path: '/profile',
       icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       )
     },
-    { 
-      id: 'help', 
-      name: 'Help Center', 
-      path: '/help',
+    {
+      name: 'Settings',
+      path: '/settings',
       icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       )
-    },
+    }
   ];
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
+  
+  // Check if a path is active
+  const isActive = (path: string) => {
+    // For hash router, we need to check without the hash
+    const currentPath = location.pathname;
+    return currentPath === path || currentPath.startsWith(`${path}/`);
   };
-
+  
+  // Check if a subitem is active
+  const isSubItemActive = (path: string) => {
+    // For hash router, we need to check without the hash
+    const currentPath = location.pathname;
+    return currentPath === path;
+  };
+  
   return (
-    <aside 
-      className={`bg-white border-r border-gray-200 h-screen transition-all duration-300 ${
-        isCollapsed ? 'w-16' : 'w-64'
-      } fixed left-0 top-0 z-10 pt-16`}
-    >
-      <div className="h-full flex flex-col justify-between">
-        <div className="overflow-y-auto">
-          {/* Toggle button */}
-          <button
-            onClick={toggleSidebar}
-            className="absolute right-0 top-4 transform translate-x-1/2 bg-white rounded-full p-1 border border-gray-200 shadow-sm"
-            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            <svg 
-              className={`h-4 w-4 text-gray-500 transition-transform duration-300 ${isCollapsed ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Navigation items */}
-          <nav className="px-2 py-4">
-            <ul className="space-y-2">
-              {navigationItems.map((item) => {
-                const isActive = location.pathname.startsWith(item.path);
-                return (
-                  <li key={item.id}>
-                    <Link
-                      to={item.path}
-                      className={`flex items-center p-2 rounded-md transition-colors duration-200 ${
-                        isActive 
-                          ? 'bg-primary-50 text-primary-700' 
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                      }`}
-                    >
-                      <span className="text-current">{item.icon}</span>
-                      {!isCollapsed && (
-                        <span className="ml-3 text-sm font-medium">{item.name}</span>
-                      )}
-                      {isActive && !isCollapsed && (
-                        <span className="ml-auto h-2 w-2 rounded-full bg-primary-500"></span>
-                      )}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+    <nav className="bg-white dark:bg-gray-800 shadow-sm h-full">
+      <div className="px-4 py-5 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-center">
+          <img
+            className="h-8"
+            src="./logo.svg"
+            alt="Domentra"
+          />
+          <span className="ml-2 text-xl font-bold text-primary-600 dark:text-primary-400">
+            Domentra
+          </span>
         </div>
-
-        {/* User profile section at bottom */}
-        {!isCollapsed && (
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center">
-              <div className="h-8 w-8 rounded-full bg-gray-300 flex-shrink-0"></div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-700">User Name</p>
-                <p className="text-xs text-gray-500">View Profile</p>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
-    </aside>
+      
+      <div className="px-2 py-4">
+        <ul className="space-y-1">
+          {navItems.map((item) => (
+            <li key={item.name}>
+              {!item.subItems ? (
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ${
+                      isActive
+                        ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    }`
+                  }
+                >
+                  <span className="mr-3 text-gray-500 dark:text-gray-400">
+                    {item.icon}
+                  </span>
+                  {item.name}
+                </NavLink>
+              ) : (
+                <div className="mb-2">
+                  <div
+                    className={`flex items-center px-4 py-3 text-sm font-medium rounded-md ${
+                      isActive(item.path)
+                        ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+                        : 'text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
+                    <span className="mr-3 text-gray-500 dark:text-gray-400">
+                      {item.icon}
+                    </span>
+                    {item.name}
+                  </div>
+                  
+                  <ul className="mt-1 pl-10 space-y-1">
+                    {item.subItems.map((subItem) => (
+                      <li key={subItem.name}>
+                        {subItem.name === 'My Requests' ? (
+                          <NavLink
+                            to="/my-requests"
+                            className={({ isActive }) =>
+                              `block px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+                                isActive
+                                  ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+                                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                              } ${
+                                subItem.highlight
+                                  ? 'border-l-2 border-primary-500 dark:border-primary-400'
+                                  : ''
+                              }`
+                            }
+                          >
+                            {subItem.name}
+                          </NavLink>
+                        ) : (
+                          <NavLink
+                            to={subItem.path}
+                            className={({ isActive }) =>
+                              `block px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+                                isActive
+                                  ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+                                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                              } ${
+                                subItem.highlight
+                                  ? 'border-l-2 border-primary-500 dark:border-primary-400'
+                                  : ''
+                              }`
+                            }
+                          >
+                            {subItem.name}
+                          </NavLink>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      {/* Create Funding Request Button */}
+      <div className="px-4 py-4 mt-6 border-t border-gray-200 dark:border-gray-700">
+        <NavLink
+          to="/funding/create"
+          className="flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200 transform hover:scale-105 animate-pulse-subtle"
+        >
+          <svg className="mr-2 -ml-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+          </svg>
+          <span className="font-bold">Create Funding Request</span>
+        </NavLink>
+      </div>
+    </nav>
   );
 };
 

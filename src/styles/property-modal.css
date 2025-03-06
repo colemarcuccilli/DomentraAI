@@ -1,0 +1,53 @@
+/* Property Modal Styles */
+
+
+/* Hide scrollbar but allow scrolling */
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+
+/* Ensure modal content is properly scrollable */
+
+.property-modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.property-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.property-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.property-modal-content::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+}
+
+
+/* Smooth scrolling for section navigation */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Responsive adjustments for mobile */
+
+@media (max-width: 640px) {
+    .property-modal-content {
+        max-height: 95vh;
+    }
+}

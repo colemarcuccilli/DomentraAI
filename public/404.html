@@ -5,24 +5,31 @@
     <meta charset="utf-8">
     <title>Domentra AI</title>
     <script type="text/javascript">
-        // Single Page Apps for GitHub Pages
-        // MIT License
-        // https://github.com/rafgraph/spa-github-pages
-        var pathSegmentsToKeep = 1;
+        // Redirect to the main app with hash routing
+        var segmentCount = 1; // For GitHub project pages
+        var redirectUrl = window.location.protocol + '//' + window.location.hostname +
+            (window.location.port ? ':' + window.location.port : '') +
+            window.location.pathname.split('/').slice(0, segmentCount + 1).join('/') +
+            '/#' + window.location.pathname.slice(window.location.pathname.split('/').slice(0, segmentCount + 1).join('/').length);
 
-        var l = window.location;
-        l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-            l.hash
-        );
+        // Add query parameters if they exist
+        if (window.location.search) {
+            redirectUrl += window.location.search;
+        }
+
+        // Add hash if it exists
+        if (window.location.hash) {
+            redirectUrl += window.location.hash;
+        }
+
+        console.log('Redirecting to:', redirectUrl);
+        window.location.replace(redirectUrl);
     </script>
 </head>
 
 <body>
-    Redirecting...
+    <h1>Redirecting...</h1>
+    <p>If you are not redirected automatically, <a href="/DomentraAI/">click here</a>.</p>
 </body>
 
 </html>
